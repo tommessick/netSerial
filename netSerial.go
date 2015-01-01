@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"log"
 	"net"
-	"syscall"
 
 	"github.com/schleibinger/sio"
 )
@@ -15,7 +14,7 @@ func Open(dev string, rate uint32, port string) (err error) {
 
 	var fromSerial = make(chan byte)
 
-	p, err := sio.Open("/dev/fluke", syscall.B9600)
+	p, err := sio.Open(dev, rate)
 	if err != nil {
 		return err
 	}
